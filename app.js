@@ -12,12 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-
-       let searchCriteria = promptFor("Is the person male or female?", boyGirl).toLowerCase()
       // TODO: search by traits
-     
-      searchResults = searchByTrait(people);
-
       break;
       default:
     app(people); // restart app
@@ -37,33 +32,21 @@ function mainMenu(person, people){
     alert("Could not find that individual.");
     return app(people); // restart
   }
-<<<<<<< HEAD
-=======
   
-  console.log(person.firstName);
->>>>>>> 36b62baaee94558882d82195167054660e634734
+
 
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
   switch(displayOption){
     case "info":
-<<<<<<< HEAD
-      alert("First Name: " + person.firstName + "\n" + "Last Name: " + "\n" + "ID Number: " + person.id + "\n" + "Gender: " + person.gender + "\n" + "Date of Birth: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight: " + person.weight + "\n" + "Eye Color: " + person.eyeColor + "\n" + "Occupation: " + person.Occupation )
     // TODO: get person's info
-    break;
-=======
-    // TODO: get person's info
-    alert( bold("First Name: "+person.firstName+ " Last Name: "+ person.lastName);
->>>>>>> 36b62baaee94558882d82195167054660e634734
+    alert( "First Name: "+person.firstName+ " | Last Name: "+ person.lastName+" | Gender: "+person.gender+" | Date of birth: "+person.dob+" | Height: "+person.height+" | Weight: "+person.weight+" | Eyecolor: "+person.eyeColor+ " | Occupation: "+person.occupation+" | Parents: "+person.parents+" | Spouse: "+person.currentSpouse);
+	break;
     case "family":
     // TODO: get person's family
     break;
     case "descendants":
-<<<<<<< HEAD
-    // TODO: get person's descendants
-=======
     
->>>>>>> 36b62baaee94558882d82195167054660e634734
     break;
     case "restart":
     app(people); // restart
@@ -79,10 +62,7 @@ function searchByName(people){
   let firstName = promptFor("What is the person's first name?", chars).toLowerCase();
   let lastName = promptFor("What is the person's last name?", chars).toLowerCase();
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 36b62baaee94558882d82195167054660e634734
   let foundPerson = people.filter(function(person){
     if(person.firstName.toLowerCase() === firstName && person.lastName.toLowerCase() === lastName){
       return true;
@@ -91,30 +71,11 @@ function searchByName(people){
       return false;
     }
   })
-<<<<<<< HEAD
-  return foundPerson[0];
-}
-
-function searchByTrait(people){
-  let gender = promptFor("What is his/her gender?", chars);
-  
-  let foundGender = people.filter(function(person){
-  if(person.gender === gender){
-    return true;
-  }
-  else{
-    return false;
-  }
-})
-return foundGender
-}
-=======
   // TODO: find the person using the name they entered
   // alert(foundPerson.firstName);
   return foundPerson[0];
 }
 
->>>>>>> 36b62baaee94558882d82195167054660e634734
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -149,9 +110,3 @@ function chars(input){
   return true; // default validation only
 }
 
-<<<<<<< HEAD
-function boyGirl(input){
-  return input.toLowerCase() == "male" || input.toLowerCase() == "female";
-}
-=======
->>>>>>> 36b62baaee94558882d82195167054660e634734
