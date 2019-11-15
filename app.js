@@ -37,7 +37,8 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-      alert("First Name: " + person.firstName + "\n" + "Last Name: " + "\n" + "ID Number: " + person.id + "\n" + "Gender: " + person.gender + "\n" + "Date of Birth: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight: " + person.weight + "\n" + "Eye Color: " + person.eyeColor + "\n" + "Occupation: " + person.Occupation )
+    displayPerson(person);
+      // alert("First Name: " + person.firstName + "\n" + "Last Name: " + "\n" + "ID Number: " + person.id + "\n" + "Gender: " + person.gender + "\n" + "Date of Birth: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight: " + person.weight + "\n" + "Eye Color: " + person.eyeColor + "\n" + "Occupation: " + person.Occupation )
     // TODO: get person's info
     break;
     case "family":
@@ -91,11 +92,13 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
-  // print all of the information about a person:
-  // height, weight, age, name, occupation, eye color.
-  let personInfo = "First Name: " + person.firstName + "\n";
-  personInfo += "Last Name: " + person.lastName + "\n";
-  // TODO: finish getting the rest of the information to display
+
+	let personInfo = person.every();
+  // // print all of the information about a person:
+  // // height, weight, age, name, occupation, eye color.
+  // let personInfo = "First Name: " + person.firstName + "\n";
+  // personInfo += "Last Name: " + person.lastName + "\n";
+  // // TODO: finish getting the rest of the information to display
   alert(personInfo);
 }
 
