@@ -57,11 +57,12 @@ function mainMenu(person, people){
     case "family":
       displayPeople(spouse(person,people));
       displayPeople(parents(person, people));
-      displayPeople(siblings(person, people))
+      displayPeople(siblings(person, people));
 
     // TODO: get person's family
     break;
     case "descendants":
+    displayPeople(kids(person,people));
     // TODO: get person's descendants
     break;
     case "restart":
@@ -175,7 +176,7 @@ return foundFam2
 
 function siblings(person, people){
   let foundFam3 = people.filter(function(people){
-  if( people.parents === person.parents){
+  if(people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]){
     return true;
   }
   else{
@@ -183,4 +184,21 @@ function siblings(person, people){
   }
 })
 return foundFam3
+}
+
+function kids(person, people){
+  let foundFam3 = people.filter(function(people){
+  if( person.parents[0] === people.id || person.parents[1]== people.id){
+    return true;
+  }
+  else{
+    return false;
+  }
+})
+return foundFam3
+}
+
+function descendants(person, people){
+	let kids
+	
 }
