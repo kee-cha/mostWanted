@@ -12,12 +12,7 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-
-       let searchCriteria = promptFor("Is the person male or female?", boyGirl).toLowerCase()
       // TODO: search by traits
-     
-      searchResults = searchByTrait(people);
-
       break;
       default:
     app(people); // restart app
@@ -37,8 +32,6 @@ function mainMenu(person, people){
     alert("Could not find that individual.");
     return app(people); // restart
   }
-
-  console.log(person.firstName);
 
   let displayOption = prompt("Found " + person.firstName + " " + person.lastName + " . Do you want to know their 'info', 'family', or 'descendants'? Type the option you want or 'restart' or 'quit'");
 
