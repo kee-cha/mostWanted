@@ -13,16 +13,15 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
-      let searchGender = promptFor("Do you know the gender?", yesNo).toLocaleLowerCase();
+      let searchGender = promptFor("Do you know the gender and eye color?", yesNo).toLocaleLowerCase();
+      let foundSearch;
       switch(searchGender){
         case "yes":
-          searchResults = searchByTrait(people);
+          foundSearch = searchByTrait(people);
           break;
         case "no":
-          searchResults = searchByTrait(people);
           break;
         default:
-          searchGender
           break;
       }
       break;
@@ -34,6 +33,7 @@ function app(people){
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
+
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
@@ -83,10 +83,10 @@ function searchByName(people){
 }
 
 function searchByTrait(people){
-  let gender = promptFor("What is his/her gender?", chars);
-  
+  let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
+  let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
   let foundGender = people.filter(function(person){
-  if(person.gender === gender){
+  if(person.gender.toLocaleLowerCase() === gender && person.eyeColor.toLocaleLowerCase() === eyesCol){
     return true;
   }
   else{
@@ -136,6 +136,6 @@ function chars(input){
   return true; // default validation only
 }
 
-// function boyGirl(input){
-//   return input.toLowerCase() == "male" || input.toLowerCase() == "female";
-// }
+function boyGirl(input){
+  return input.toLowerCase() == "male" || input.toLowerCase() == "female";
+}
