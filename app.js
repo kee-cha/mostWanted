@@ -49,7 +49,9 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
+
       displayPerson(person);
+
     // TODO: get person's info
     break;
     case "family":
@@ -120,6 +122,7 @@ function displayPeople(people){
 }
 
 function displayPerson(person){
+
   // print all of the information about a person:
   // height, weight, age, name, occupation, eye color.
   let personInfo = "First Name: " + person.firstName + "\n";
@@ -132,6 +135,7 @@ function displayPerson(person){
   personInfo += "Eye Color: " + person.eyeColor + "\n";
   personInfo += "Occupation: " + person.occupation + "\n";
   // TODO: finish getting the rest of the information to display
+
   alert(personInfo);
 }
 
