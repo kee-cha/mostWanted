@@ -53,6 +53,10 @@ function mainMenu(person, people){
     // TODO: get person's info
     break;
     case "family":
+      displayPeople(spouse(person,people));
+      displayPeople(parents(person, people));
+      displayPeople(siblings(person, people))
+
     // TODO: get person's family
     break;
     case "descendants":
@@ -95,6 +99,19 @@ function searchByTrait(people){
 })
  return displayPeople(foundGender);
 }
+
+function spouse(person, people){
+  let foundFam = people.filter(function(people){
+  if(people.currentSpouse === person.id){
+    return true;
+  }
+  else{
+    return false;
+  }
+})
+return foundFam
+}
+
 // alerts a list of people
 function displayPeople(people){
   alert(people.map(function(person){
@@ -138,4 +155,28 @@ function chars(input){
 
 function boyGirl(input){
   return input.toLowerCase() == "male" || input.toLowerCase() == "female";
+}
+
+function parents(person, people){
+  let foundFam2 = people.filter(function(people){
+  if( people.id === person.parents[0] || people.id === person.parents[1]){
+    return true;
+  }
+  else{
+    return false;
+  }
+})
+return foundFam2
+}
+
+function siblings(person, people){
+  let foundFam3 = people.filter(function(people){
+  if( people.parents === person.parents){
+    return true;
+  }
+  else{
+    return false;
+  }
+})
+return foundFam3
 }
