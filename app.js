@@ -13,6 +13,17 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits
+      let searchGender = promptFor("Do you know the gender and eye color?", yesNo).toLocaleLowerCase();
+      let foundSearch;
+      switch(searchGender){
+        case "yes":
+          foundSearch = searchByTrait(people);
+          break;
+        case "no":
+          break;
+        default:
+          break;
+      }
       break;
       default:
     app(people); // restart app
@@ -22,6 +33,7 @@ function app(people){
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
+
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people){
@@ -37,8 +49,9 @@ function mainMenu(person, people){
 
   switch(displayOption){
     case "info":
-    displayPerson(person);
-      // alert("First Name: " + person.firstName + "\n" + "Last Name: " + "\n" + "ID Number: " + person.id + "\n" + "Gender: " + person.gender + "\n" + "Date of Birth: " + person.dob + "\n" + "Height: " + person.height + "\n" + "Weight: " + person.weight + "\n" + "Eye Color: " + person.eyeColor + "\n" + "Occupation: " + person.Occupation )
+
+      displayPerson(person);
+
     // TODO: get person's info
     break;
     case "family":
@@ -72,17 +85,17 @@ function searchByName(people){
 }
 
 function searchByTrait(people){
-  let gender = promptFor("What is his/her gender?", chars);
-  
+  let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
+  let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
   let foundGender = people.filter(function(person){
-  if(person.gender === gender){
+  if(person.gender.toLocaleLowerCase() === gender && person.eyeColor.toLocaleLowerCase() === eyesCol){
     return true;
   }
   else{
     return false;
   }
 })
-return foundGender
+ return displayPeople(foundGender);
 }
 // alerts a list of people
 function displayPeople(people){
@@ -93,12 +106,19 @@ function displayPeople(people){
 
 function displayPerson(person){
 
-	let personInfo = person.every();
-  // // print all of the information about a person:
-  // // height, weight, age, name, occupation, eye color.
-  // let personInfo = "First Name: " + person.firstName + "\n";
-  // personInfo += "Last Name: " + person.lastName + "\n";
-  // // TODO: finish getting the rest of the information to display
+  // print all of the information about a person:
+  // height, weight, age, name, occupation, eye color.
+  let personInfo = "First Name: " + person.firstName + "\n";
+  personInfo += "Last Name: " + person.lastName + "\n";
+  personInfo += "ID Number: " + person.id + "\n";
+  personInfo += "Gender: " + person.gender + "\n";
+  personInfo += "Date of Birth: " + person.dob + "\n";
+  personInfo += "Height: " + person.height + "\n";
+  personInfo += "Weight: " + person.weight + "\n";
+  personInfo += "Eye Color: " + person.eyeColor + "\n";
+  personInfo += "Occupation: " + person.occupation + "\n";
+  // TODO: finish getting the rest of the information to display
+
   alert(personInfo);
 }
 
