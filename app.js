@@ -62,9 +62,8 @@ function mainMenu(person, people){
     // TODO: get person's family
     break;
     case "descendants":
-    displayPeople(kids(person,people));
     // TODO: get person's descendants
-    displayPeople(children(person,people))
+      displayPeople(children(person,people))
     break;
     case "restart":
     app(people); // restart
@@ -177,11 +176,7 @@ return foundFam2
 
 function siblings(person, people){
   let foundFam3 = people.filter(function(people){
-<<<<<<< HEAD
   if( people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]){
-=======
-  if(people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]){
->>>>>>> e0e5185f840fe72f0ab04f2f713adfaebc0b932b
     return true;
   }
   else{
@@ -190,31 +185,14 @@ function siblings(person, people){
 })
 return foundFam3
 }
-<<<<<<< HEAD
 function children(person, people){
   let foundFam4 = people.filter(function(people){
   if( people.parents[0] || people.parents[1] === person.id){
-=======
-
-function kids(person, people){
-  let foundFam3 = people.filter(function(people){
-  if( person.parents[0] === people.id || person.parents[1]== people.id){
->>>>>>> e0e5185f840fe72f0ab04f2f713adfaebc0b932b
     return true;
   }
   else{
     return false;
   }
 })
-<<<<<<< HEAD
 return foundFam4
 }
-=======
-return foundFam3
-}
-
-function descendants(person, people){
-	let kids
-	
-}
->>>>>>> e0e5185f840fe72f0ab04f2f713adfaebc0b932b
