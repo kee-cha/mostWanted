@@ -63,6 +63,7 @@ function mainMenu(person, people){
     break;
     case "descendants":
     // TODO: get person's descendants
+    displayPeople(children(person,people))
     break;
     case "restart":
     app(people); // restart
@@ -175,7 +176,7 @@ return foundFam2
 
 function siblings(person, people){
   let foundFam3 = people.filter(function(people){
-  if( people.parents === person.parents){
+  if( people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]){
     return true;
   }
   else{
@@ -183,4 +184,15 @@ function siblings(person, people){
   }
 })
 return foundFam3
+}
+function children(person, people){
+  let foundFam4 = people.filter(function(people){
+  if( people.parents[0] || people.parents[1] === person.id){
+    return true;
+  }
+  else{
+    return false;
+  }
+})
+return foundFam4
 }
