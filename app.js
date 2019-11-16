@@ -187,7 +187,7 @@ return foundFam3
 }
 function children(person, people){
   let foundFam4 = people.filter(function(people){
-  if( people.parents[0] || people.parents[1] === person.id){
+  if(person.id === people.parents[0] || person.id === people.parents [1]){
     return true;
   }
   else{
