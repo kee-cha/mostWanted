@@ -110,21 +110,6 @@ function searchByName(people) {
   return foundPerson[0];
 }
 
-// function searchByTrait(people) {
-//   let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
-//   let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
-
-//   let foundGender = people.filter(function (person) {
-//     if (person.gender.toLocaleLowerCase() === gender || person.eyeColor.toLocaleLowerCase() === eyesCol) {
-//       return true;
-//     }
-//     else {
-//       return false;
-//     }
-//   })
-//   return displayPeople(foundGender);
-// }
-
 function spouse(person, people) {
   let foundFam = people.filter(function (people) {
     if (people.currentSpouse === person.id) {
@@ -298,7 +283,7 @@ function searchByTrait(people) {
 	let searchHeight =  promptFor("Do you know the person's height?", yesNo).toLocaleLowerCase();
 	
 	if(searchHeight === "yes"){
-	  let peopleHeight = promptFor("What is his/her height?", chars).toLocaleLowerCase();
+	  let peopleHeight = promptFor("What is his/her height in inches?", chars).toLocaleLowerCase();
 	   let foundHeight = people.filter(function (people) {
 	    if (people.height === Number(peopleHeight)) {
 	      return true;
@@ -320,8 +305,8 @@ function searchByTrait(people) {
 	let searchWeight =  promptFor("Do you know the person's weight?", yesNo).toLocaleLowerCase();
 	
 	if(searchWeight === "yes"){
-	  let peopleWeight = promptFor("What is his/her height?", chars).toLocaleLowerCase();
-	   let foundweight = people.filter(function (people) {
+	  let peopleWeight = promptFor("What is his/her weight in pounds?", chars).toLocaleLowerCase();
+	   let foundWeight = people.filter(function (people) {
 	    if (people.weight === Number(peopleWeight)) {
 	      return true;
 	    }
@@ -343,7 +328,7 @@ function searchByTrait(people) {
 	
 	if(searchOccupation === "yes"){
 	  let peopleOccupation = promptFor("What is his/her occupation?", chars).toLocaleLowerCase();
-	   let foundOccupation = people.filter(function (people) {
+	  let foundOccupation = people.filter(function (people) {
 	    if (people.occupation === peopleOccupation) {
 	      return true;
 	    }
@@ -351,10 +336,10 @@ function searchByTrait(people) {
 	      return false;
 	    }
 	  })
-	people = foundOccupation
-	displayPeople(people)
-	alert("Start new search")
-	 app();
+	    people = foundOccupation
+  	  displayPeople(people)
+	    alert("Start new search")
+	      app();
 	 }
 	else if (searchOccupation === "no") {
 		displayPeople(people)
