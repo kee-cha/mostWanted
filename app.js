@@ -323,16 +323,14 @@ function searchByTrait(people) {
 	  })
 	people = foundOccupation
 	displayPeople(people)
-	 
+	alert("Start new search")
+	 app();
 	 }
 	else if (searchOccupation === "no") {
 		displayPeople(people)
-
+		alert("Start new search")
+		app();
 	}    
 	
 	}  
-
-	 
-	  // let occupation =promptFor("What is his/her birthday?", chars).toLocaleLowerCase();
-
- 	 }
+}
