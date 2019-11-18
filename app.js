@@ -13,7 +13,7 @@ function app(people) {
       break;
     case 'no':
       // TODO: search by traits
-      let searchGender = promptFor("Do you know the gender and eye color?", yesNo).toLocaleLowerCase();
+      let searchGender = promptFor("Do you want to search by trait?", yesNo).toLocaleLowerCase();
       let foundSearch;
       switch (searchGender) {
         case "yes":
@@ -97,8 +97,9 @@ function searchByName(people) {
 function searchByTrait(people) {
   let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
   let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
+
   let foundGender = people.filter(function (person) {
-    if (person.gender.toLocaleLowerCase() === gender && person.eyeColor.toLocaleLowerCase() === eyesCol) {
+    if (person.gender.toLocaleLowerCase() === gender || person.eyeColor.toLocaleLowerCase() === eyesCol) {
       return true;
     }
     else {
@@ -169,13 +170,17 @@ function boyGirl(input) {
 
 function parents(person, people) {
   let foundFam2 = people.filter(function (people) {
-    if (people.id === person.parents[0] || people.id === person.parents[1]) {
+     if (people.id === person.parents[0] || people.id === person.parents[1]) {
       return true;
     }
     else {
       return false;
     }
   })
+  if( person.parents.length < 1){
+    alert( person.firstName + " " + person.lastName + " has no parents.")
+  } else{
+  }
   return foundFam2
 }
 
@@ -183,7 +188,7 @@ function siblings(person, people) {
   let foundFam3 = people.filter(function (people) {
     if( people.parents.length < 1){
     }
-    else if (people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]) {
+    else if (people.parents[0] === person.parents[0] ) {
       return true;
     }
     else {
