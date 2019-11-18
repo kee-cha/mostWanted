@@ -181,7 +181,9 @@ function parents(person, people) {
 
 function siblings(person, people) {
   let foundFam3 = people.filter(function (people) {
-    if (people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]) {
+    if( people.parents.length < 1){
+    }
+    else if (people.parents[0] === person.parents[0] || people.parents[1] === person.parents[1]) {
       return true;
     }
     else {
@@ -190,6 +192,7 @@ function siblings(person, people) {
   })
   return foundFam3
 }
+
 function children(person, people) {
   let foundFam4 = people.filter(function (people) {
     if (person.id === people.parents[0] || person.id === people.parents[1]) {
@@ -204,11 +207,9 @@ function children(person, people) {
       return " This is " + person.firstName + " " + person.lastName + "'s child:" + "\n" + guy.firstName + " " + guy.lastName;
     }).join("\n"));
   } else {
+    alert(person.firstName + " " + person.lastName + " has no descendants.")
   }
   for (let i = 0; i < foundFam4.length; i++) {
     children(foundFam4[i], people)
   }
 }
-
-
-
