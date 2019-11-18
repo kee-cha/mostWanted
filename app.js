@@ -20,6 +20,8 @@ function app(people) {
           foundSearch = searchByTrait(people);
           break;
         case "no":
+          alert("Restart search")
+          app(people)
           break;
         default:
           break;
@@ -33,7 +35,6 @@ function app(people) {
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
   mainMenu(searchResults, people);
 }
-
 
 // Menu function to call once you find who you are looking for
 function mainMenu(person, people) {
@@ -50,12 +51,28 @@ function mainMenu(person, people) {
   switch (displayOption) {
     case "info":
       displayPerson(person);
+      let continueSearch = promptFor("Would you like to start a new search? Enter yes or no.", yesNo).toLocaleLowerCase();
+      switch (continueSearch) {
+        case "yes":
+          app(people);
+          break;
+        case "no":
+          break;
+      }
       // TODO: get person's info
       break;
     case "family":
-      displayPeople(spouse(person, people));
-      displayPeople(parents(person, people));
-      displayPeople(siblings(person, people));
+      spouse(person, people);
+      parents(person, people);
+      siblings(person, people);
+      let newSearch = promptFor("Would you like to start a new search? Enter yes or no.", yesNo).toLocaleLowerCase();
+      switch (newSearch) {
+        case "yes":
+          app(people);
+          break;
+        case "no":
+          break;
+      }
       // TODO: get person's family
       break;
     case "descendants":
@@ -86,8 +103,7 @@ function searchByName(people) {
   let foundPerson = people.filter(function (person) {
     if (person.firstName.toLowerCase() === firstName && person.lastName.toLowerCase() === lastName) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   })
@@ -113,12 +129,18 @@ function spouse(person, people) {
   let foundFam = people.filter(function (people) {
     if (people.currentSpouse === person.id) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   })
-  return foundFam
+  if (person.currentSpouse > 0) {
+    alert(foundFam.map(function (people) {
+      return " This is " + person.firstName + " " + person.lastName + "'s current spouse:" + "\n" + people.firstName + " " + people.lastName;
+    }).join("\n"));
+  } else {
+    alert(person.firstName + " " + person.lastName + " has no current spouse.");
+  }
+  return foundFam;
 }
 
 // alerts a list of people
@@ -170,31 +192,40 @@ function boyGirl(input) {
 
 function parents(person, people) {
   let foundFam2 = people.filter(function (people) {
-     if (people.id === person.parents[0] || people.id === person.parents[1]) {
+    if (people.id === person.parents[0] || people.id === person.parents[1]) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   })
-  if( person.parents.length < 1){
-    alert( person.firstName + " " + person.lastName + " has no parents.")
-  } else{
+  if (person.parents.length > 0) {
+    alert(foundFam2.map(function (people) {
+      return " This is " + person.firstName + " " + person.lastName + "'s parents:" + "\n" + people.firstName + " " + people.lastName;
+    }).join("\n"));
+  } else {
+    alert(person.firstName + " " + person.lastName + " has no parents.");
   }
-  return foundFam2
+  return foundFam2;
 }
 
 function siblings(person, people) {
   let foundFam3 = people.filter(function (people) {
-    if( people.parents.length < 1){
-    }
-    else if (people.parents[0] === person.parents[0] ) {
-      return true;
-    }
-    else {
+    if (people.parents.length < 1) {
+    } else if (people.parents[0] === person.parents[0]) {
+      if (person.id === people.id) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
       return false;
     }
   })
+  if (foundFam3.length > 0) {
+    alert(foundFam3.map(function (people) {
+      return " This is " + person.firstName + " " + person.lastName + "'s siblings:" + "\n" + people.firstName + " " + people.lastName;
+    }).join("\n"));
+  }
   return foundFam3
 }
 
@@ -202,8 +233,7 @@ function children(person, people) {
   let foundFam4 = people.filter(function (people) {
     if (person.id === people.parents[0] || person.id === people.parents[1]) {
       return true;
-    }
-    else {
+    } else {
       return false;
     }
   })
@@ -212,9 +242,9 @@ function children(person, people) {
       return " This is " + person.firstName + " " + person.lastName + "'s child:" + "\n" + guy.firstName + " " + guy.lastName;
     }).join("\n"));
   } else {
-    alert(person.firstName + " " + person.lastName + " has no descendants.")
+    alert(person.firstName + " " + person.lastName + " has no descendants.");
   }
   for (let i = 0; i < foundFam4.length; i++) {
-    children(foundFam4[i], people)
+    children(foundFam4[i], people);
   }
 }
