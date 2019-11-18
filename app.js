@@ -94,20 +94,20 @@ function searchByName(people) {
   return foundPerson[0];
 }
 
-function searchByTrait(people) {
-  let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
-  let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
+// function searchByTrait(people) {
+//   let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
+//   let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
 
-  let foundGender = people.filter(function (person) {
-    if (person.gender.toLocaleLowerCase() === gender || person.eyeColor.toLocaleLowerCase() === eyesCol) {
-      return true;
-    }
-    else {
-      return false;
-    }
-  })
-  return displayPeople(foundGender);
-}
+//   let foundGender = people.filter(function (person) {
+//     if (person.gender.toLocaleLowerCase() === gender || person.eyeColor.toLocaleLowerCase() === eyesCol) {
+//       return true;
+//     }
+//     else {
+//       return false;
+//     }
+//   })
+//   return displayPeople(foundGender);
+// }
 
 function spouse(person, people) {
   let foundFam = people.filter(function (people) {
@@ -218,3 +218,121 @@ function children(person, people) {
     children(foundFam4[i], people)
   }
 }
+
+function searchByTrait(people) {
+	let searchGender =  promptFor("Do you know the gender of the person?", yesNo).toLocaleLowerCase();
+	
+	if(searchGender === "yes"){
+	  let gender = promptFor("What is his/her gender? Male or Female", boyGirl).toLocaleLowerCase();
+	  let foundGender = people.filter(function (people) {
+	    if (people.gender.toLocaleLowerCase() === gender) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  })
+	  // displayPeople(foundGender);
+	  people = foundGender
+	  eyeColor(people);
+	}
+	else if (searchGender === "no") {
+		eyeColor(people); 
+	}  
+	
+	function eyeColor(people){
+	let searchEyeColor =  promptFor("Do you know the eye color of the person?", yesNo).toLocaleLowerCase();
+	
+	if(searchEyeColor === "yes"){
+	  let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
+	   let foundEyeColor = people.filter(function (people) {
+	    if (people.eyeColor.toLocaleLowerCase() === eyesCol) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  })
+	people = foundEyeColor
+	height(people);
+		
+	 }
+	else if (searchEyeColor === "no") {
+	height(people);  
+	}    
+	
+	}	  
+
+
+	function height(people){
+	let searchHeight =  promptFor("Do you know the person's height?", yesNo).toLocaleLowerCase();
+	
+	if(searchHeight === "yes"){
+	  let peopleHeight = promptFor("What is his/her height?", chars).toLocaleLowerCase();
+	   let foundHeight = people.filter(function (people) {
+	    if (people.height === Number(peopleHeight)) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  })
+	people = foundHeight
+ 	weight(people);
+	 }
+	else if (searchHeight === "no") {
+		weight(people); 
+	}    
+	
+	}	
+
+	function weight(people){
+	let searchWeight =  promptFor("Do you know the person's weight?", yesNo).toLocaleLowerCase();
+	
+	if(searchWeight === "yes"){
+	  let peopleWeight = promptFor("What is his/her height?", chars).toLocaleLowerCase();
+	   let foundweight = people.filter(function (people) {
+	    if (people.weight === Number(peopleWeight)) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  })
+	people = foundWeight
+	occupation(people)
+	 
+	 }
+	else if (searchWeight === "no") {
+		occupation(people)  
+	}    
+	
+	}
+	function occupation(people){
+	let searchOccupation =  promptFor("Do you know the person's occupation?", yesNo).toLocaleLowerCase();
+	
+	if(searchOccupation === "yes"){
+	  let peopleOccupation = promptFor("What is his/her occupation?", chars).toLocaleLowerCase();
+	   let foundOccupation = people.filter(function (people) {
+	    if (people.occupation === peopleOccupation) {
+	      return true;
+	    }
+	    else {
+	      return false;
+	    }
+	  })
+	people = foundOccupation
+	displayPeople(people)
+	 
+	 }
+	else if (searchOccupation === "no") {
+		displayPeople(people)
+
+	}    
+	
+	}  
+
+	 
+	  // let occupation =promptFor("What is his/her birthday?", chars).toLocaleLowerCase();
+
+ 	 }
