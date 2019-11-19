@@ -152,12 +152,6 @@ function boyGirl(input) {
   return input.toLowerCase() == "male" || input.toLowerCase() == "female";
 }
 
-function heightInput(input) {
-  if (input === Number) {
-    return true;
-  }
-}
-
 function parents(person, people) {
   let foundFam2 = people.filter(function (people) {
     if (people.id === person.parents[0] || people.id === person.parents[1]) {
@@ -238,7 +232,7 @@ function searchByTrait(people) {
 function eyeColor(people) {
   let searchEyeColor = promptFor("Do you know the eye color of the person?", yesNo).toLocaleLowerCase();
   if (searchEyeColor === "yes") {
-    let eyesCol = promptFor("what is the color of his/her eyes?", chars).toLocaleLowerCase();
+    let eyesCol = promptFor("what is the color of his/her eyes? Please choose between brown, black, blue, hazel, green.", colorEye).toLocaleLowerCase();
     let foundEyeColor = people.filter(function (people) {
       if (people.eyeColor.toLocaleLowerCase() === eyesCol) {
         return true;
@@ -257,7 +251,7 @@ function height(people) {
   if (people.firstName == undefined) {
     let searchHeight = promptFor("Do you know the person's height?", yesNo).toLocaleLowerCase();
     if (searchHeight === "yes") {
-      let peopleHeight = promptFor("What is his/her height in inches?", chars).toLocaleLowerCase();
+      let peopleHeight = promptFor("What is his/her height in inches?", chars);
       if (isNaN(Number(peopleHeight))) {
         alert("Invalid input")
         height(people)
@@ -285,7 +279,7 @@ function weight(people) {
   if (people.firstName == undefined) {
     let searchWeight = promptFor("Do you know the person's weight?", yesNo).toLocaleLowerCase();
     if (searchWeight === "yes") {
-      let peopleWeight = promptFor("What is his/her weight in pounds?", chars).toLocaleLowerCase();
+      let peopleWeight = promptFor("What is his/her weight in pounds?", chars);
       if (isNaN(Number(peopleWeight))) {
         alert("Invalid input")
         weight(people)
@@ -362,4 +356,28 @@ function job(input) {
       alert("Sorry person not found")
       break;
   }
+}
+
+function colorEye(input){
+  let colorChoice = input
+  switch (colorChoice) {
+    case "brown":
+      return true;
+      break;
+    case "black":
+      return true;
+      break;
+    case 'blue':
+      return true;
+      break;
+    case "green":
+      return true;
+      break;
+    case "hazel":
+      return true;
+      break;
+    default:
+      alert("Sorry, there was no one in the database found with that eye color")
+      break;
+  } 
 }
